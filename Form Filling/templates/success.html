@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submission Successful</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Submission Successful!</h1>
+        <p>Thank you for submitting your details. Below are the details you entered:</p>
+
+        <div class="details">
+            <p><strong>Name:</strong> {{ name }}</p>
+            <p><strong>Email:</strong> {{ email }}</p>
+            <p><strong>Phone:</strong> {{ phone }}</p>
+            <p><strong>City:</strong> {{ city }}</p>
+            <p><strong>State:</strong> {{ state }}</p>
+            <p><strong>Nationality:</strong> {{ nationality }}</p>
+            <p><strong>Religion:</strong> {{ religion }}</p>
+            <p><strong>Gender:</strong> {{ gender }}</p>
+            <p><strong>University of Previous Course:</strong> {{ university }}</p>
+            <p><strong>Course Studied:</strong> {{ course }}</p>
+            <p><strong>Percentage:</strong> {{ percentage }}</p>
+        </div>
+
+        <a href="/" class="back-btn">Back to Form</a>
+    </div>
+
+    <script>
+        // Wait for the page to load completely
+        document.addEventListener("DOMContentLoaded", () => {
+            const synth = window.speechSynthesis;
+
+            // Function to speak the text out loud
+            const speakText = (text) => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = "en-IN"; // Set language to English (India)
+                synth.speak(utterance);
+            };
+
+            // Create a speech message for the successful submission
+            const detailsMessage = `
+                Thank you for submitting your details. 
+                Here are the details you entered. 
+                Name: ${'{{ name }}'}, 
+                Email: ${'{{ email }}'}, 
+                Phone: ${'{{ phone }}'}, 
+                City: ${'{{ city }}'}, 
+                State: ${'{{ state }}'}, 
+                Nationality: ${'{{ nationality }}'}, 
+                Religion: ${'{{ religion }}'}, 
+                Gender: ${'{{ gender }}'}, 
+                University of Previous Course: ${'{{ university }}'}, 
+                Course Studied: ${'{{ course }}'}, 
+                Percentage: ${'{{ percentage }}'}.`;
+
+            // Start speaking the details after page load
+            speakText(detailsMessage);
+        });
+    </script>
+</body>
+</html>
