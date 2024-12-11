@@ -46,10 +46,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     speechResult += "%"; // Add % at the end
                 }
 
-                field.value = speechResult; // Update the form field
+                // Handle Pincode field
+                if (fieldId === "pincode") {
+                    speechResult = speechResult.replace(/\D/g, ''); // Remove all non-numeric characters
+                }
+                
+
+                // Handle Gender field
+                if (fieldId === "gender") {
+                    // Specifically correct 'mail' to 'male' only for the gender field
+                    if (speechResult.toLowerCase() === "mail") {
+                        speechResult = "Male"; // Correct 'mail' to 'male'
+                    }
+                }
+
+                // Update the form field with the recognized speech
+                field.value = speechResult;
 
                 // Speak confirmation after user has spoken and input is filled
-                speakText(`You entered ${speechResult} for ${fieldId}`);
+                speakText(`You entered ${speechResult} for ${fieldId}`, () => {});
             };
 
             recognition.onerror = (event) => {
