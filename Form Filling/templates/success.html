@@ -15,7 +15,9 @@
             <p><strong>Name:</strong> {{ name }}</p>
             <p><strong>Email:</strong> {{ email }}</p>
             <p><strong>Phone:</strong> {{ phone }}</p>
+            <p><strong>Date of Birth:</strong> {{ dateofbirth }}</p>
             <p><strong>City:</strong> {{ city }}</p>
+            <p><strong>Pincode:</strong> {{ pincode }}</p>
             <p><strong>State:</strong> {{ state }}</p>
             <p><strong>Nationality:</strong> {{ nationality }}</p>
             <p><strong>Religion:</strong> {{ religion }}</p>
@@ -23,9 +25,10 @@
             <p><strong>University of Previous Course:</strong> {{ university }}</p>
             <p><strong>Course Studied:</strong> {{ course }}</p>
             <p><strong>Percentage:</strong> {{ percentage }}</p>
+            <p><strong>Preferred Course:</strong> {{ preferredcourse }}</p>
         </div>
 
-        <a href="/" class="back-btn">Back to Form</a>
+        <a href="/" class="back-btn">Logout</a>
     </div>
 
     <script>
@@ -41,20 +44,22 @@
             };
 
             // Create a speech message for the successful submission
-            const detailsMessage = `
-                Thank you for submitting your details. 
-                Here are the details you entered. 
+            const detailsMessage = 
+                `Thank you for submitting your details. Here are the details you entered. 
                 Name: ${'{{ name }}'}, 
                 Email: ${'{{ email }}'}, 
                 Phone: ${'{{ phone }}'}, 
+                DateOfBirth: ${'{{ dateofbirth }}'}, 
                 City: ${'{{ city }}'}, 
+                Pincode: ${'{{ pincode }}'},
                 State: ${'{{ state }}'}, 
                 Nationality: ${'{{ nationality }}'}, 
                 Religion: ${'{{ religion }}'}, 
                 Gender: ${'{{ gender }}'}, 
                 University of Previous Course: ${'{{ university }}'}, 
-                Course Studied: ${'{{ course }}'}, 
-                Percentage: ${'{{ percentage }}'}.`;
+                Course Studied: ${'{{ course }}'},   
+                Percentage: ${'{{ percentage }}'},
+                Preferred Course: ${'{{ preferredcourse }}'}.`;
 
             // Start speaking the details after page load
             speakText(detailsMessage);
