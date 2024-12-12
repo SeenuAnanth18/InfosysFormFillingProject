@@ -37,6 +37,9 @@
                     <button type="button" class="mic-btn" data-field="password">
                         <img src="{{ url_for('static', filename='mic.svg') }}" alt="Microphone">
                     </button>
+                    <button type="button" class="eye-btn" onclick="togglePasswordVisibility()">
+                        <img src="{{ url_for('static', filename='eye.svg') }}" alt="Eye Icon">
+                    </button>
                 </div>
             </div>
 
@@ -45,18 +48,18 @@
     </div>
 
     <script>
-        // Speak "Welcome to Infosys University" when the page loads
-        window.onload = function() {
-            speakText("Welcome to Infosys University");
-        };
-
-        // Function to speak the provided text
+        // Initialize speech synthesis (for speaking prompts)
         function speakText(text) {
             const synth = window.speechSynthesis;
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = "en-IN"; // Set language to English (India)
             synth.speak(utterance);
         }
+
+        // Speak the welcome message when the page loads
+        document.addEventListener("DOMContentLoaded", () => {
+            speakText("Welcome to Infosys University. Please fill out the following details for your course.");
+        });
 
         // Speech recognition initialization
         const micButtons = document.querySelectorAll('.mic-btn');
@@ -85,20 +88,48 @@
         });
 
         // Start speech recognition
-        function startSpeechRecognition(field) {
-            const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            recognition.lang = 'en-US';
-            recognition.start();
+ // Start speech recognition
+function startSpeechRecognition(field) {
+    const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+    recognition.lang = 'en-IN';
+    recognition.start();
 
-            recognition.onresult = (event) => {
-                let transcript = event.results[0][0].transcript;
+    recognition.onresult = (event) => {
+        let transcript = event.results[0][0].transcript;
 
-                // Clean up the transcript by removing unwanted punctuation (like a period at the end)
-                transcript = transcript.replace(/[.,?!]$/, "").trim();
+        // Clean up the transcript by removing unwanted punctuation and fixing common issues
+        transcript = transcript.replace(/[.,?!]$/, "").trim();  // Remove unwanted punctuation
 
-                field.value = transcript;
-                speakText(`You entered ${transcript}`);
-            };
+        // Handle specific cases for the password and email fields
+        if (field.id === 'password' || field.id === 'email') {
+            // Replace 'at' with '@' only in password or email fields
+            transcript = transcript.replace(/\bat\b/g, '@');  // Replace whole word 'at' with '@'
+            
+            // Handle potential extra spaces in the password or email
+            transcript = transcript.replace(/\s/g, '');  // Remove any spaces
+        }
+
+        // Remove any unwanted characters (e.g., special symbols not allowed)
+        transcript = transcript.replace(/[^a-zA-Z0-9@.]/g, '');
+
+        field.value = transcript;
+        speakText(`You entered ${transcript}`);
+    };
+}
+
+
+        // Function to toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordField = document.getElementById('password');
+            const eyeIcon = document.querySelector('.eye-btn img');
+
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                eyeIcon.src = "{{ url_for('static', filename='eye-off.svg') }}";  // Change icon to "eye-off"
+            } else {
+                passwordField.type = "password";
+                eyeIcon.src = "{{ url_for('static', filename='eye.svg') }}";  // Reset to the "eye" icon
+            }
         }
 
         // Redirect to next page if all fields are filled
@@ -108,7 +139,7 @@
             const password = document.getElementById('password').value;
 
             if (name && email && password) {
-                window.location.href = 'index.html';
+                window.location.href = 'index.html';  // Redirect after form submission
             } else {
                 event.preventDefault();
                 alert("Please fill in all fields");
