@@ -58,6 +58,7 @@ form {
 
 input {
     padding: 12px;
+    padding-right: 35px; /* Added space for the eye icon */
     border: 2px solid #e48cdf;
     border-radius: 10px;
     font-size: 1rem;
@@ -69,6 +70,26 @@ input {
 input:focus {
     border-color: #e48cdf;
     outline: none;
+}
+
+/* Eye icon button */
+.eye-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.eye-btn img {
+    width: 20px; /* Set a fixed width for the icon */
+    height: 20px; /* Set a fixed height for the icon */
+}
+
+.eye-btn img:hover {
+    filter: brightness(0) saturate(100%) invert(26%) sepia(42%) saturate(516%) hue-rotate(84deg) brightness(94%) contrast(95%);
 }
 
 /* Microphone button */
@@ -117,6 +138,7 @@ input:focus {
 .back-btn:hover {
     background-color: #c20dc4;
 }
+
 /* Placeholder Text Style */
 input::placeholder {
     color: rgba(0, 0, 0, 0.473);
