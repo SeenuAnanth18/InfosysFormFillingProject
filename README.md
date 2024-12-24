@@ -4,7 +4,7 @@ This project focuses on converting speech to text and enhancing user interaction
 
 ## Features
 - **Speech-to-Text Conversion**: Implemented using the Web Speech API to transcribe user input in real-time.
-- **Text-to-Speech Functionality**:**(This is my own idea)** Added as an extra feature using the Speech Synthesis API, enabling the application to provide verbal feedback to users.
+- **Text-to-Speech Functionality(This is my own idea)**: Added as an extra feature using the Speech Synthesis API, enabling the application to provide verbal feedback to users.
 
 This project was developed as part of a company assignment and showcases basic voice input handling and feedback capabilities.
 
