@@ -11,7 +11,6 @@ def login():
 @app.route("/login", methods=["POST"])
 def handle_login():
     # Get the form data (name, email, and password)
-    name = request.form.get("name")
     email = request.form.get("email")
     password = request.form.get("password")
 
