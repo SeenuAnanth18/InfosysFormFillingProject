@@ -2,5 +2,5 @@ services:
   - type: web
     name: formfilling
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python app.py"
+    buildCommand: "pip install -r formfilling/requirements.txt"
+    startCommand: "python formfilling/app.py"
