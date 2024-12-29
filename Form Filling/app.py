@@ -19,6 +19,7 @@ def handle_login():
         return redirect(url_for('index'))  # Redirect to the index page if login is successful
     else:
         return "Invalid email or password. Please try again."
+        
 # Index page
 @app.route("/index")
 def index():
