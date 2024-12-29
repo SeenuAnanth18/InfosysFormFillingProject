@@ -98,9 +98,9 @@
                 }
 
                 if (field.id === 'email') {
-            // Ensure the first letter of email is lowercase
-            transcript = transcript.charAt(0).toLowerCase() + transcript.slice(1);
-        }
+                    // Ensure the first letter of email is lowercase
+                    transcript = transcript.charAt(0).toLowerCase() + transcript.slice(1);
+                }
 
                 // Remove any unwanted characters (e.g., special symbols not allowed)
                 transcript = transcript.replace(/[^a-zA-Z0-9@.]/g, '');
@@ -123,19 +123,6 @@
                 eyeIcon.src = "{{ url_for('static', filename='eye.svg') }}";  // Reset to the "eye" icon
             }
         }
-
-        // Redirect to next page if all fields are filled
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-
-            if (email && password) {
-                window.location.href = 'index.html';  // Redirect after form submission
-            } else {
-                event.preventDefault();
-                alert("Please fill in all fields");
-            }
-        });
     </script>
 </body>
 </html>
