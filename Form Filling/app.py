@@ -15,11 +15,10 @@ def handle_login():
     password = request.form.get("password")
 
     # Check if all fields are filled
-    if name and email and password:
-        return redirect(url_for('index'))  # Redirect to the index page if all fields are filled
+     if email in users and users[email]['password'] == password:
+        return redirect(url_for('index'))  # Redirect to the index page if login is successful
     else:
-        return "Please fill in all fields"  # Return an error if any field is missing
-
+        return "Invalid email or password. Please try again."
 # Index page
 @app.route("/index")
 def index():
