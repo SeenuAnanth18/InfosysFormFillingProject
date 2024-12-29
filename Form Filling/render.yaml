@@ -2,5 +2,5 @@ services:
   - type: web
     name: formfilling
     env: python
-    buildCommand: "poetry install"
+    buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
