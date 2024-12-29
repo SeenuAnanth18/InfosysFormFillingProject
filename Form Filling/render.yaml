@@ -3,5 +3,4 @@ services:
     name: formfilling
     env: python
     buildCommand: "pip install -r requirements.txt"
-    buildCommand: "poetry install"
     startCommand: "python app.py"
