@@ -50,7 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (fieldId === "pincode") {
                     speechResult = speechResult.replace(/\D/g, ''); // Remove all non-numeric characters
                 }
-                
+
+                if (field.id === 'email') {
+                    // Ensure the first letter of email is lowercase
+                    speechResult = speechResult.charAt(0).toLowerCase() + speechResult.slice(1);
+                }
 
                 // Handle Gender field
                 if (fieldId === "gender") {
@@ -77,4 +81,20 @@ document.addEventListener("DOMContentLoaded", () => {
             };
         });
     });
+
+    // Password match function
+    const passwordField = document.getElementById('password');
+    const confirmPasswordField = document.getElementById('confirm-password');
+    const passwordError = document.getElementById('password-error');
+
+    function checkPasswordMatch() {
+        if (passwordField.value !== confirmPasswordField.value) {
+            passwordError.textContent = "Passwords do not match!";
+            passwordError.style.color = "red";
+        } else {
+            passwordError.textContent = "";
+        }
+    }
+
+    confirmPasswordField.addEventListener('input', checkPasswordMatch);
 });
