@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 if (field.id === 'email') {
                     // Ensure the first letter of email is lowercase
-                    speechResult = speechResult.charAt(0).toLowerCase() + speechResult.slice(1);
+                    speechResult = speechResult.toLowerCase()
                 }
 
                 // Handle Gender field
