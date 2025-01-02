@@ -40,6 +40,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Remove trailing dot (.) for all fields
                 speechResult = speechResult.replace(/\.$/, "");
 
+                if (field.id === "email") {
+                    // Ensure the first letter of email is lowercase
+                    speechResult = speechResult.toLowerCase();
+
+                    // Replace "at" with "@"
+                    speechResult = speechResult.replace(/\bat\b/gi, "@");
+
+                    // Remove spaces
+                    speechResult = speechResult.replace(/\s+/g, "");
+                }
+
                 // Add % symbol for the percentage field
                 if (fieldId === "percentage") {
                     speechResult = speechResult.replace(/[^0-9]/g, ""); // Ensure only numbers
@@ -49,11 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Handle Pincode field
                 if (fieldId === "pincode") {
                     speechResult = speechResult.replace(/\D/g, ''); // Remove all non-numeric characters
-                }
-
-                if (field.id === 'email') {
-                    // Ensure the first letter of email is lowercase
-                    speechResult = speechResult.toLowerCase()
                 }
 
                 // Handle Gender field
